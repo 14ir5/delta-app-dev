@@ -2,7 +2,6 @@ package com.example.myapplication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
 import android.widget.Button
 
 import android.widget.TextView
@@ -12,17 +11,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        newQstn()
+        newQstn(score)
         var bn=findViewById<Button>(R.id.btnnext)
+        var score:int
         bn.setOnClickListener{
-            newQstn()
+            score=0
+            newQstn(score)
 
         }
 
 
 }
 
-    fun newQstn() {
+    fun newQstn(score: Int) {
 
 
         var d: Int
@@ -105,22 +106,22 @@ class MainActivity : AppCompatActivity() {
 
        bt1.setOnClickListener {
 
-            final(bt1, days[rd], bt2, bt3, bt4)
+            final(bt1, days[rd], bt2, bt3, bt4,score)
 
         }
         bt2.setOnClickListener {
 
-            final(bt2, days[rd], bt1, bt3, bt4)
+            final(bt2, days[rd], bt1, bt3, bt4, score)
 
         }
         bt3.setOnClickListener {
 
-            final(bt3, days[rd], bt2, bt1, bt4)
+            final(bt3, days[rd], bt2, bt1, bt4, score)
 
         }
         bt4.setOnClickListener {
 
-            final(bt4, days[rd], bt2, bt3, bt1)
+            final(bt4, days[rd], bt2, bt3, bt1, score)
 
         }
     }
@@ -128,14 +129,17 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    fun final(b1: Button, s: String, b2: Button, b3: Button, b4: Button) {
+    fun final(b1: Button, s: String, b2: Button, b3: Button, b4: Button, score: Int) {
 
 
         if (b1.text == s) {
             b1.setBackgroundColor(getResources().getColor(R.color.green))
-
+           score=score+5
+            newQstn(score)
         } else {
             b1.setBackgroundColor(getResources().getColor(R.color.red))
+            var scr=findViewById<TextView>(R.id.textView4)
+            scr.text="score:$score"
             if (b2.text == s)
                 b2.setBackgroundColor(getResources().getColor(R.color.green))
 
