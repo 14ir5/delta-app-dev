@@ -11,9 +11,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        newQstn(score)
+
         var bn=findViewById<Button>(R.id.btnnext)
-        var score:int
+        var score=0
+        newQstn(score)
         bn.setOnClickListener{
             score=0
             newQstn(score)
@@ -130,16 +131,17 @@ class MainActivity : AppCompatActivity() {
 
 
     fun final(b1: Button, s: String, b2: Button, b3: Button, b4: Button, score: Int) {
-
+        var score1=score
 
         if (b1.text == s) {
             b1.setBackgroundColor(getResources().getColor(R.color.green))
-           score=score+5
-            newQstn(score)
+
+            score1=score1+5
+            newQstn(score1)
         } else {
             b1.setBackgroundColor(getResources().getColor(R.color.red))
             var scr=findViewById<TextView>(R.id.textView4)
-            scr.text="score:$score"
+            scr.text="last score:$score1"
             if (b2.text == s)
                 b2.setBackgroundColor(getResources().getColor(R.color.green))
 
@@ -165,17 +167,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
-/* var k = a[Random.nextInt(0, 5)]
- bt2.text = k
- k = a[Random.nextInt(0, 5)]
- bt3.text = k
- k = a[Random.nextInt(0, 5)]
- bt4.text = k*/
-
-/* var sfl = arrayOf(bt1.text, bt2.text, bt3.text, bt4.text)
-*/
-/* */
 
 
 
